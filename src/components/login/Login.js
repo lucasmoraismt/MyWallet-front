@@ -1,4 +1,4 @@
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 
@@ -21,7 +21,7 @@ export default function Login() {
       setUser(userStorage);
       history.push("/home");
     }
-  });
+  }, []);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -68,6 +68,15 @@ export default function Login() {
       alert("Preencha todos os campos.");
     }
   }
+
+  function checkLoading() {
+    if (loading) {
+      return;
+    } else {
+      history.push("/sign-up");
+    }
+  }
+
   return (
     <Container>
       <Introduction>
@@ -95,8 +104,8 @@ export default function Login() {
             {loading ? <>Entrando...</> : <>Entrar</>}
           </button>
         </Form>
-        <StyledLink to="/sign-up">
-          <p>Primeira vez? Cadastre-se!</p>
+        <StyledLink onClick={checkLoading}>
+          Primeira vez? Cadastre-se!
         </StyledLink>
       </FormContainer>
     </Container>

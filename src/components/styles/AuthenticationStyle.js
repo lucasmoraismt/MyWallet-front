@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 const Container = styled.div`
   height: 100vh;
@@ -66,15 +65,13 @@ const Form = styled.form`
     pointer-events: "none";
   }
 `;
-const StyledLink = styled(Link)`
-  p {
-    font-weight: bold;
-    font-size: 15px;
-    line-height: 18px;
-    cursor: pointer;
-  }
+const StyledLink = styled.p`
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 18px;
+  cursor: pointer;
 
-  p:disabled {
+  :disabled {
     opacity: "0.7";
     pointer-events: "none";
   }

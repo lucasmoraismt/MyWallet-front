@@ -27,7 +27,7 @@ export default function SignUp() {
       setUser(userStorage);
       history.push("/home");
     }
-  });
+  }, []);
 
   function newUser(event) {
     event.preventDefault();
@@ -41,7 +41,7 @@ export default function SignUp() {
       const body = {
         name,
         email,
-        firstPassword,
+        password: firstPassword,
       };
       const request = axios.post("http://localhost:4000/sign-up", body);
       request.then((response) => {
@@ -84,10 +84,13 @@ export default function SignUp() {
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
   }
-  function isURL(url) {
-    const re =
-      /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/;
-    return re.test(String(url).toLowerCase());
+
+  function checkLoading() {
+    if (loading) {
+      return;
+    } else {
+      history.push("/");
+    }
   }
 
   return (
@@ -133,8 +136,8 @@ export default function SignUp() {
             {loading ? <>Cadastrando...</> : <>Cadastrar</>}
           </button>
         </Form>
-        <StyledLink to="/">
-          <p>Já tem uma conta? Entre agora!</p>
+        <StyledLink onClick={checkLoading}>
+          Já tem uma conta? Entre agora!
         </StyledLink>
       </FormContainer>
     </Container>
