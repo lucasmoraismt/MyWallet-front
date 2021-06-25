@@ -56,7 +56,7 @@ export default function Home() {
     });
 
     request.catch((err) => {
-      console.log(err.response);
+      alert("Ocorreu um erro ao obter os dados do servidor");
     });
   }
 
@@ -75,7 +75,7 @@ export default function Home() {
       setUser(null);
     });
     request.catch((err) => {
-      console.log(err);
+      alert("Ocorreu um erro ao obter os dados do servidor");
     });
   }
 

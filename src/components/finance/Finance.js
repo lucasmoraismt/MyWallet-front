@@ -40,7 +40,7 @@ export default function Finance({ type }) {
 
       history.push("/home");
     } catch {
-      console.log("Deu ruim");
+      alert("Erro desconhecido.");
     }
   }
 
