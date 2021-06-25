@@ -33,7 +33,7 @@ export default function Home() {
   function getFinance() {
     const config = {
       headers: {
-        Authorization: `Bearer ${user.token}`,
+        Authorization: `Bearer ${user?.token}`,
       },
     };
 
@@ -71,7 +71,7 @@ export default function Home() {
   function signOut() {
     const config = {
       headers: {
-        Authorization: `Bearer ${user.token}`,
+        Authorization: `Bearer ${user?.token}`,
       },
     };
 
@@ -95,7 +95,7 @@ export default function Home() {
     }
   }
 
-  const firstName = user.name.split(" ")[0];
+  const firstName = user?.name.split(" ")[0];
 
   return (
     <Container>
