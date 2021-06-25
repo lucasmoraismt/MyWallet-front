@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import UserContext from "../../contexts/UserContext";
@@ -8,8 +8,16 @@ export default function Finance({ type }) {
   const [value, setValue] = useState(0);
   const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(false);
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const history = useHistory();
+
+  useEffect(() => {
+    if (localStorage.user && !user?.token) {
+      const userStorage = JSON.parse(localStorage.user);
+      setUser(userStorage);
+      history.push("/home");
+    }
+  }, []);
 
   async function submitInputs(e, type) {
     e.preventDefault();

@@ -19,10 +19,10 @@ export default function SignUp() {
   const [firstPassword, setFirstPassword] = useState("");
   const [secondPassword, setSecondPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const { setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
-    if (localStorage.user) {
+    if (localStorage.user && !user?.token) {
       const userStorage = JSON.parse(localStorage.user);
       setUser(userStorage);
       history.push("/home");

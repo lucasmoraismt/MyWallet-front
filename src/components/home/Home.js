@@ -22,6 +22,14 @@ export default function Home() {
     getFinance();
   }, []);
 
+  useEffect(() => {
+    if (localStorage.user && !user?.token) {
+      const userStorage = JSON.parse(localStorage.user);
+      setUser(userStorage);
+      history.push("/home");
+    }
+  }, []);
+
   function getFinance() {
     const config = {
       headers: {
